@@ -1,6 +1,16 @@
 # Mind Mapper
 
+> 本项目基于 [misbahsy/MindMapper](https://github.com/misbahsy/MindMapper) 进行二次开发，将原项目的 Langflow API 替换为 DIFY API，并添加了更多功能特性。感谢原作者的开源贡献！
+
 基于 DIFY API 的智能思维导图生成工具。该工具可以自动将文本内容转换为结构化的思维导图，帮助用户更好地理解和组织信息。
+
+## 主要改进
+
+- 🔄 替换 API：从 Langflow API 迁移到 DIFY API
+- 🔒 增强安全性：添加环境变量配置管理
+- 🌐 优化国际化：添加中文界面支持
+- ⚡️ 改进性能：优化 API 调用逻辑
+- 📚 完善文档：添加详细的开发文档和示例
 
 ## 功能特点
 
