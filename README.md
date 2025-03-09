@@ -1,71 +1,117 @@
 # Mind Mapper
 
-A web application that generates interactive mind maps from URLs, YouTube videos, or text prompts using Langflow APIs.
+基于 DIFY API 的智能思维导图生成工具。该工具可以自动将文本内容转换为结构化的思维导图，帮助用户更好地理解和组织信息。
 
-## Features
+## 功能特点
 
-- Generate mind maps from URLs, YouTube videos, or text prompts
-- Interactive mind map visualization using Mermaid.js
-- View detailed information about each node in the mind map
-- Download mind maps as PNG images for sharing
-- Modern UI built with Next.js and Shadcn UI
+- 🤖 智能文本分析：利用 DIFY API 智能分析文本内容
+- 🌲 自动生成思维导图：将文本转换为层次分明的思维导图结构
+- 🎨 美观的可视化展示：使用现代化的 UI 组件展示思维导图
+- 🔄 多种输入支持：
+  - 文本输入：直接输入或粘贴文本内容
+  - URL 解析：自动提取网页内容
+  - YouTube 视频：分析视频内容（计划中）
 
-## Prerequisites
+## 技术栈
 
-- Node.js 18.0.0 or later
-- Langflow API server running at http://127.0.0.1:7860
+- **前端框架**: Next.js
+- **UI 组件**: Shadcn UI
+- **类型检查**: TypeScript
+- **样式方案**: Tailwind CSS
+- **API 集成**: DIFY API
+- **思维导图渲染**: Mermaid.js
 
-## Getting Started
+## 快速开始
 
-1. Clone the repository:
-
+1. 克隆项目
 ```bash
-git clone https://github.com/yourusername/mindmapper.git
-cd mindmapper
+git clone https://github.com/randyluo85/Mind_Mapper_Dify.git
+cd Mind_Mapper_Dify
 ```
 
-2. Install dependencies:
-
+2. 安装依赖
 ```bash
 npm install
 ```
 
-3. Start the development server:
+3. 配置环境变量
+```bash
+# 复制环境变量模板
+cp .env.example .env.local
 
+# 编辑 .env.local 文件，填入您的 DIFY API 配置
+DIFY_API_KEY=your-api-key-here
+DIFY_API_BASE_URL=http://your-dify-server:port
+```
+
+4. 启动开发服务器
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. 访问应用
+打开浏览器访问 [http://localhost:3000](http://localhost:3000)
 
-## API Configuration
+## 项目结构
 
-The application uses the following Langflow API endpoints:
+```
+Mind_Mapper_Dify/
+├── app/                    # Next.js 应用目录
+│   ├── config/            # 配置文件
+│   ├── services/          # API 服务
+│   └── types/             # TypeScript 类型定义
+├── components/            # React 组件
+├── public/               # 静态资源
+└── ...配置文件
+```
 
-- URL: http://127.0.0.1:7860/api/v1/run/1e9960df-6b9d-48eb-81c2-26af9e877f50?stream=false
-- YouTube: http://127.0.0.1:7860/api/v1/run/13b817f9-1478-4f5a-8775-c6f4de8019e7?stream=false
-- Prompt: http://127.0.0.1:7860/api/v1/run/f6081c11-6dc9-4941-8598-f21f97d94e4c?stream=false
+## 最近更新
 
-Make sure your Langflow server is running and these endpoints are accessible.
+### 特性分支：feature/dify-integration
 
-## Usage
+- ✨ 集成 DIFY API
+  - 添加安全的环境变量配置
+  - 实现 API 服务封装
+  - 添加类型定义
+  
+- 🔒 安全性改进
+  - 使用环境变量管理敏感信息
+  - 添加 .env.example 模板
+  - 更新 .gitignore 配置
 
-1. Select the input type (URL, YouTube, or Prompt)
-2. Enter your input in the text field
-3. Click "Generate Mind Map"
-4. Explore the generated mind map by clicking on nodes to view details
-5. Download the mind map as a PNG image using the Download button
+- 🏗️ 代码结构优化
+  - 添加配置管理模块
+  - 优化 API 调用逻辑
+  - 改进错误处理
 
-## Technologies Used
+## 开发指南
 
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Shadcn UI](https://ui.shadcn.com/)
-- [Mermaid.js](https://mermaid-js.github.io/mermaid/)
-- [html-to-image](https://github.com/bubkoo/html-to-image)
+### API 响应格式
 
-## License
+思维导图数据使用以下 JSON 格式：
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+```typescript
+interface NodeData {
+  id: string;          // 节点唯一标识
+  label: string;       // 节点标题
+  children?: NodeData[]; // 子节点数组
+  details?: string[];   // 节点详细信息
+}
+```
+
+### 分支管理
+
+- `main`: 主分支，包含稳定版本代码
+- `feature/dify-integration`: DIFY API 集成分支
+
+## 贡献指南
+
+1. Fork 本仓库
+2. 创建您的特性分支 (`git checkout -b feature/amazing-feature`)
+3. 提交您的改动 (`git commit -m 'feat: add amazing feature'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 创建 Pull Request
+
+## 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
